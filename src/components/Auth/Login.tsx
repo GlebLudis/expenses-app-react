@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { Link as RouterLink, Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -10,7 +11,6 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(0),
       padding: theme.spacing(0),
       border: theme.spacing(0),
-
     },
     loginBtn: {
       marginLeft: theme.spacing(9),
@@ -89,6 +89,10 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
+const WithOutLogin = React.forwardRef((props, ref) => (
+  <RouterLink to="/" {...props} role={undefined}></RouterLink>
+));
+
 const Login = () => {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -145,53 +149,60 @@ const Login = () => {
     });
   };
   return (
-    <form className={classes.container} noValidate autoComplete="off">
-          <div>
-            <TextField
-              error={state.isError}
-              fullWidth
-              id="username"
-              type="email"
-              label="Username"
-              placeholder="Username"
-              margin="normal"
-              onChange={handleUsernameChange}
-              onKeyPress={handleKeyPress}
-            />
-            <TextField
-              error={state.isError}
-              fullWidth
-              id="password"
-              type="password"
-              label="Password"
-              placeholder="Password"
-              margin="normal"
-              helperText={state.helperText}
-              onChange={handlePasswordChange}
-              onKeyPress={handleKeyPress}
-            />
-          </div>
-          <Button
-            variant="contained"
-            size="large"
-            color="secondary"
-            className={classes.loginBtn}
-            onClick={handleLogin}
-            disabled={state.isButtonDisabled}
-          >
-            Login
-          </Button>
-          <Button
-            variant="contained"
-            size="large"
-            color="secondary"
-            className={classes.signBtn}
-            onClick={handleLogin}
-            disabled={state.isButtonDisabled = false}
-          >
-            Sign In
-          </Button>
-    </form>
+    <>
+      <form className={classes.container} noValidate autoComplete="off">
+        <div>
+          <TextField
+            error={state.isError}
+            fullWidth
+            id="username"
+            type="email"
+            label="Username"
+            placeholder="Username"
+            margin="normal"
+            onChange={handleUsernameChange}
+            onKeyPress={handleKeyPress}
+          />
+          <TextField
+            error={state.isError}
+            fullWidth
+            id="password"
+            type="password"
+            label="Password"
+            placeholder="Password"
+            margin="normal"
+            helperText={state.helperText}
+            onChange={handlePasswordChange}
+            onKeyPress={handleKeyPress}
+          />
+        </div>
+        <Button
+          variant="contained"
+          size="large"
+          color="secondary"
+          className={classes.loginBtn}
+          onClick={handleLogin}
+          disabled={state.isButtonDisabled}
+        >
+          Login
+        </Button>
+        <Button
+          variant="contained"
+          size="large"
+          color="secondary"
+          className={classes.signBtn}
+          onClick={handleLogin}
+          disabled={(state.isButtonDisabled = false)}
+        >
+          Sign In
+        </Button>
+      </form>
+      <div className="no-login">
+        <Button className="no-login" component={WithOutLogin}>
+          Without Log In
+        </Button>
+      </div>
+    </>
   );
 };
 

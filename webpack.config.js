@@ -17,6 +17,8 @@ module.exports = {
     },
     devServer: {
         compress: true,
+        historyApiFallback: true,
+        open: true,
         port: 8000,
         client: {
             logging: 'info',
