@@ -1,0 +1,8 @@
+node_modules
+dist
+build
+coverage
+.idea
+.DS
+.eslintcache
+.DS_Store
