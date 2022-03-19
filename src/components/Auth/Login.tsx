@@ -191,8 +191,7 @@ const Login = () => {
           size="large"
           color="secondary"
           className={classes.signBtn}
-          onClick={handleLogin}
-          disabled={(state.isButtonDisabled = false)}
+          disabled={(state.isButtonDisabled)}
         >
           Sign In
         </Button>

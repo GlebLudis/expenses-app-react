@@ -15,7 +15,7 @@ const LinkToAbout = React.forwardRef((props, ref) => (
 
 export const HomePage: FC = () => {
     return (
-        <>g
+        <>
             <div className="container">
                 <h4>EXPENSES APP</h4>
                 <div className="login-button">
